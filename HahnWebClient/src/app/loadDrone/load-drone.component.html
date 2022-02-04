@@ -1,0 +1,166 @@
+<div class="content-i">
+    <div class="content-box">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="element-wrapper">
+                    <h6 class="element-header">DRONE'S MEDICATION</h6>
+                    <div class="element-box">
+                        <form  [formGroup]="droneMedForm" (ngSubmit)="onSubmit()" >
+                            <h5 class="form-header">LOADING DETAILS</h5>
+                            <div class="form-desc">This form is used to load a drone with medications for delivery.
+                                All entries are validated before being sent to the server.
+                            </div>
+  
+                            <div class="form-group row">
+                              <label for="">Drone's Serial Number<span class="required">*</span></label>
+                              <input class="form-control input" formControlName="SerialNumber" placeholder="Serial Number (Required)" required="required" minlength="5" readonly="readonly"
+                                    [ngClass]="{ 'is-invalid': (submitted && droneMedForm.get('SerialNumber').touched || droneMedForm.get('SerialNumber').dirty) && !droneMedForm.get('SerialNumber').valid }" type="text">
+  
+                              <div *ngIf="droneMedForm.get('SerialNumber').dirty" class="help-block form-text with-errors form-control-feedback">
+                                  <div *ngIf="droneMedForm.get('SerialNumber').errors?.required">Serial Number is required</div>
+                                  <div *ngIf="droneMedForm.get('SerialNumber').errors?.minlength">Serial Number must be at least five characters</div>
+                              </div>
+                            </div>
+  
+                            <div class="form-group row">
+                                <label for="">Medication<span class="required"> *</span></label>
+                                <select class="form-control other"  required="required" (change)="onMemoryAddMedication($event.target.value)">
+                                  <option value="">Select Medication</option>
+                                  <option *ngFor="let med of medications" value="{{med.medicationID}}">{{med.name}}</option>
+                                </select>
+
+                                <div *ngIf="submitted && medicationList.length === 0" class="help-block form-text with-errors form-control-feedback">
+                                    <div *ngIf="medicationList.length === 0">Medication is required</div>
+                                </div>
+                            </div>
+
+  
+                            <div class="form-group row" *ngIf="medicationMemoryList?.length">
+                                <label for=""> <span style="color:red"></span></label>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-lg table-v2 table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-right">ID</th>
+                                                <th class="text-left">Medication Name</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let mem of medicationMemoryList | slice: (memPage-1) * 5 : (memPage-1) * 5 + 5">
+                                                <td class="text-right">{{mem.medicationID}}</td>
+                                                <td class="text-left">{{mem.name}}</td>
+                                                <td class="row-actions">
+                                                  <a class="danger" href="#" data-title="Remove Medication" title="Remove Medication" data-toggle="tooltip" (click) ="onMemoryDeleteMedication(mem)" data-original-title><i class="os-icon os-icon-ui-15"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div style="text-align: right;" *ngIf="medicationMemoryList && medicationMemoryList?.length - 5 >= 0">
+                                      <ngb-pagination class="d-flex justify-content-end"
+                                         [(page)]="memPage" [pageSize]="5" [rotate]="true" [boundaryLinks]="true" [collectionSize]="medicationMemoryList?.length">
+                                      </ngb-pagination>
+                                   </div>
+                                </div>
+                              </div>
+
+                            <div class="form-group row" >
+                                <div class="col-lg-4" style="padding-left: 0px; margin-bottom: 15px;">
+                                    <button type="submit" class="btn fw-btn-fill btn-gradient-yellow" *ngIf="!isViewRecord"
+                                        [title]= "droneMedForm.valid ? 'Save your entered data' : 'Disabled until form data is valid'"
+                                        [disabled]="!droneMedForm.valid || medicationMemoryList?.length === 0"> Submit
+                                    </button>
+                                </div>
+
+                                <div class="col-lg-4" style="padding-left: 0px;">
+                                    <button type="button" class="btn fw-btn-fill btn-gradient-dark" (click)="resetForm()"
+                                        [title]= "!droneMedForm.untouched ? 'Save your entered data' : 'Disabled until at least one form field is filled'"
+                                        [disabled]="droneMedForm.untouched"> Reset
+                                    </button>
+                                </div>
+                                                               
+                                <div class="col-lg-2"></div>
+                                <div class="col-lg-2"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+  
+  
+            <div class="col-lg-8">
+                <div class="element-wrapper">
+                    <h6 class="element-header">RECORDS</h6>
+                    <div class="element-box-tp">
+                      <!--------------------START - Drone File Table------------------ -->
+                      <div class="controls-above-table">
+  
+                          <!--------------------START ALERTS-------------------------------->
+                          <app-alert></app-alert>
+                          <!--------------------END ALERTS-------------------------------- -->
+  
+                          <div class="row gutters-8">
+                            <div class="col-lg-2 col-12 form-group" style="padding-right: 0px;">
+                              <button type="button" class="fw-btn-fill btn-gradient-yellow"(click)="onMap()">Map</button>
+                            </div>
+                            <div class="col-lg-2 col-12 form-group">
+                              <button type="button" class="fw-btn-fill btn-gradient-dark"(click)="onExportAsXLSX()">Download</button>
+                            </div>
+                            <div class="col-lg-5 col-12 form-group" style="padding-right: 0px;">
+                              <input #myInput class="form-control form-control-sm rounded bright" placeholder="Search medication" type="text" (input)="filterMedications(myInput.value)">
+                            </div>
+                            <div class="col-lg-3 col-12 form-group">
+                              <select class="form-control form-control-sm rounded bright width100Percent">
+                                <option selected="selected" value="">Active</option>
+                              </select>
+                            </div>
+                        </div>
+  
+                      </div>
+                      <!--------------------END - Controls Above Table------------------ -->
+                      <!--------------------START - Table with actions------------------  -->
+                      <div class="element-wrapper">
+                        <div class="element-box">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-lg table-v2 table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" style="width: 50px;"><input class="form-control" type="checkbox"></th>
+                                            <th class="text-right">ID</th>
+                                            <th class="text-center">Image</th>
+                                            <th class="text-left">Name</th>
+                                            <th class="text-left">Code</th>
+                                            <th class="text-right">Weight</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let med of droneMedicationList | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                                            <td class="text-center"><input class="form-control" type="checkbox"></td>
+                                            <td class="text-right">{{med?.medicationID}}</td>
+                                            <td class="text-center"><img [src]="med?.image" width="30px" style="border-radius:50%; border: 1px #ccc ridge;"></td>
+                                            <td class="text-left">{{med.name}}</td>
+                                            <td class="text-left">{{med.code}}</td>
+                                            <td class="text-right">{{med.weight}}</td>
+                                        </tr>
+                                    </tbody>
+  
+                                </table>
+                                <div style="text-align: right;" *ngIf="drones?.length > 1">
+                                   <ngb-pagination class="d-flex justify-content-end"
+                                      [(page)]="page" [pageSize]="pageSize" [rotate]="true" [boundaryLinks]="true" [collectionSize]="drones?.length">
+                                   </ngb-pagination>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      <!--------------------END - Table with actions------------------ -->
+                      <!--------------------START - Controls below table------------------  -->
+                      <!--------------------END - Drone File Table-------------------->
+
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  

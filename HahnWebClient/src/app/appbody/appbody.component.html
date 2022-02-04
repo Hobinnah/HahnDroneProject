@@ -1,0 +1,23 @@
+
+<ngx-ui-loader fgsColor="#767A0C" fgsType="three-strings" pbColor="#767A0C" bgsColor="red" text="Processing..." textColor="#FFFFFF"></ngx-ui-loader>
+
+<div class="all-wrapper solid-bg-all"> <!--with-side-panel-->
+    <div class="layout-w">
+
+        <!--------------------END - Main Menu-------------------->
+        <div class="content-w">
+            <!--------------------START - Top Bar-------------------->
+            <app-appheader></app-appheader>
+            <!--------------------END - Top Bar-------------------->
+            <!--------------------START - Breadcrumbs-------------------->
+            <app-appbreadcrum></app-appbreadcrum>
+            <!--------------------END - Breadcrumbs-------------------->
+            <div class="content-panel-toggler"><i class="os-icon os-icon-grid-squares-22"></i><span>Sidebar</span>
+            </div>
+            <div class="content-i">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+    <div class="display-type"></div>
+</div>

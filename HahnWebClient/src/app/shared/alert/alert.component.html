@@ -1,0 +1,10 @@
+
+<div class="element-box-content" *ngIf="alert?.ShowAlert">
+  <div [class]="alert?.AlertType" role="alert">
+      <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+        <span aria-hidden="true"> &times;</span>
+      </button>
+      <strong>{{alert?.AlertHeader}}</strong>
+      {{alert?.AlertMessage}}
+  </div>
+</div>

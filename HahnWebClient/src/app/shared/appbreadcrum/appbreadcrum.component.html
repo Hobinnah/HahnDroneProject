@@ -1,0 +1,7 @@
+
+
+<ul class="breadcrumb">
+  <li *ngFor ="let item of breadCrumb" class="breadcrumb-item">
+    <a [routerLink] = "[item.Link]" [routerLinkActive]="[item.Class]" style="font-size: .8rem;">{{item.Text}}</a>
+  </li>
+</ul>

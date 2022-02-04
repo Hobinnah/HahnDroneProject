@@ -1,0 +1,13 @@
+﻿version: '3'
+services:
+    droneapi:
+        build: .
+        ports:
+            - "8080:80"
+    
+    droneclient:
+        build: ../hahnwebclient
+        ports: 
+            - "4200:80"
+        depends_on:
+            - droneapi

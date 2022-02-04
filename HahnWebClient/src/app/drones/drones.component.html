@@ -1,0 +1,231 @@
+<div class="content-i">
+    <div class="content-box">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="element-wrapper">
+                    <h6 class="element-header">DRONE</h6>
+                    <div class="element-box">
+                        <form  [formGroup]="droneForm" (ngSubmit)="onSubmit()" >
+                            <h5 class="form-header">DRONE DETAILS</h5>
+                            <div class="form-desc">This form is used to create a new drone record, edit and to view an existing drone's detail.
+                                All entries are validated before being sent to the server.
+                            </div>
+  
+                            <!-- <div class="form-group row">
+                              <label for="">ID</label>
+                              <input class="form-control input" formControlName="DroneID" placeholder="0" type="number" readonly>
+                            </div> -->
+
+                            <div class="form-group row">
+                              <label for="">Serial Number<span class="required">*</span></label>
+                              <input class="form-control input" formControlName="SerialNumber" placeholder="Serial Number (Required)" required="required" minlength="5"
+                                    [ngClass]="{ 'is-invalid': (submitted && droneForm.get('SerialNumber').touched || droneForm.get('SerialNumber').dirty) && !droneForm.get('SerialNumber').valid }" type="text">
+  
+                              <div *ngIf="droneForm.get('SerialNumber').dirty" class="help-block form-text with-errors form-control-feedback">
+                                  <div *ngIf="droneForm.get('SerialNumber').errors?.required">Serial Number is required</div>
+                                  <div *ngIf="droneForm.get('SerialNumber').errors?.minlength">Serial Number must be at least five characters</div>
+                              </div>
+                            </div>
+  
+                            <div class="form-group row">
+                                <label for="">Model<span class="required"> *</span></label>
+                                <select class="form-control other" formControlName="ModelID"  required="required"
+                                        [ngClass]="{ 'is-invalid': (submitted && droneForm.get('ModelID').touched || droneForm.get('ModelID').dirty) && !droneForm.get('ModelID').valid }">
+                                  <option value="">Select Drone Model</option>
+                                  <option *ngFor="let model of models" value="{{model.modelID}}">{{model.description}}</option>
+                                </select>
+
+                                <div *ngIf="submitted && droneForm.get('ModelID').dirty" class="help-block form-text with-errors form-control-feedback">
+                                  <div *ngIf="droneForm.get('ModelID').errors?.required">Model is required</div>
+                                </div>
+                            </div>
+
+  
+                            <div class="form-group row">
+                              <label for="">Battery Capacity<span class="required">*</span></label>
+                              <input class="form-control input" formControlName="BatteryCapacity" placeholder="Battery Capacity (Required)" min="1" max="100"
+                                    [ngClass]="{ 'is-invalid': (droneForm.get('BatteryCapacity').touched || droneForm.get('BatteryCapacity').dirty) && !droneForm.get('BatteryCapacity').valid }" type="number">
+                                    
+                              <div *ngIf="droneForm.get('BatteryCapacity').dirty" class="help-block form-text with-errors form-control-feedback">
+                                  <div *ngIf="droneForm.get('BatteryCapacity').errors?.required">Battery Capacity is required</div>
+                                  <div *ngIf="droneForm.get('BatteryCapacity').errors?.range != null">Battery Capacity can't be more than 100</div>
+                              </div>
+                            </div>
+  
+                            <div class="form-group row">
+                              <label for="">Weight<span class="required">*</span></label>
+                              <input class="form-control input" formControlName="Weight" placeholder="Weight (Required)" min="1" max="500"
+                                    [ngClass]="{ 'is-invalid': (droneForm.get('Weight').touched || droneForm.get('Weight').dirty) && !droneForm.get('Weight').valid }" type="number">
+                                    
+                              <div *ngIf="droneForm.get('Weight').dirty" class="help-block form-text with-errors form-control-feedback">
+                                  <div *ngIf="droneForm.get('Weight').errors?.required">Weight is required</div>
+                                  <div *ngIf="droneForm.get('Weight').errors?.range != null">Weight can not be more than 500</div>
+                              </div>
+                            </div>
+  
+                            <div class="form-group row">
+                                <label for="">State<span class="required"> *</span></label>
+                                <select class="form-control other" formControlName="State"  required="required"
+                                        [ngClass]="{ 'is-invalid': (submitted && droneForm.get('State').touched || droneForm.get('State').dirty) && !droneForm.get('State').valid }">
+                                  <option value="">Select Drone Status</option>
+                                  <option *ngFor="let stat of states" value="{{stat.state}}">{{stat.description}}</option>
+                                </select>
+
+                                <div *ngIf="submitted && droneForm.get('State').errors" class="help-block form-text with-errors form-control-feedback">
+                                  <div *ngIf="droneForm.get('State').errors?.required">State is required</div>
+                                </div>
+                            </div>
+  
+                            <div class="form-group row" >
+                                <div class="col-lg-4" style="padding-left: 0px; margin-bottom: 15px;">
+                                    <button type="submit" class="btn fw-btn-fill btn-gradient-yellow" *ngIf="!isViewRecord"
+                                        [title]= "droneForm.valid ? 'Save your entered data' : 'Disabled until form data is valid'"
+                                        [disabled]="!droneForm.valid"> Submit
+                                    </button>
+                                </div>
+
+                                <div class="col-lg-4" style="padding-left: 0px;">
+                                    <button type="button" class="btn fw-btn-fill btn-gradient-dark" (click)="resetForm()"
+                                        [title]= "!droneForm.untouched ? 'Save your entered data' : 'Disabled until at least one form field is filled'"
+                                        [disabled]="droneForm.untouched"> Reset
+                                    </button>
+                                </div>
+                                                               
+                                <div class="col-lg-2"></div>
+                                <div class="col-lg-2"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+  
+  
+            <div class="col-lg-8">
+                <div class="element-wrapper">
+                    <h6 class="element-header">RECORDS</h6>
+                    <div class="element-box-tp">
+                      <!--------------------START - Drone File Table------------------ -->
+                      <div class="controls-above-table">
+  
+                          <!--------------------START ALERTS-------------------------------->
+                          <app-alert></app-alert>
+                          <!--------------------END ALERTS-------------------------------- -->
+  
+                          <div class="row gutters-8">
+                            <div class="col-lg-2 col-12 form-group" style="padding-right: 0px;">
+                              <button type="button" class="fw-btn-fill btn-gradient-yellow"(click)="addDrone()">Add</button>
+                            </div>
+                            <div class="col-lg-2 col-12 form-group">
+                              <button type="button" class="fw-btn-fill btn-gradient-dark"(click)="onExportAsXLSX()">Download</button>
+                            </div>
+                            <div class="col-lg-5 col-12 form-group" style="padding-right: 0px;">
+                              <input #myInput class="form-control form-control-sm rounded bright" placeholder="Search drone" type="text" (input)="filterDrones(myInput.value)">
+                            </div>
+                            <div class="col-lg-3 col-12 form-group">
+                              <select class="form-control form-control-sm rounded bright width100Percent">
+                                <option selected="selected" value="">Active</option>
+                              </select>
+                            </div>
+                        </div>
+  
+                      </div>
+                      <!--------------------END - Controls Above Table------------------ -->
+                      <!--------------------START - Table with actions------------------  -->
+                      <div class="element-wrapper">
+                        <div class="element-box">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-lg table-v2 table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" style="width: 50px;"><input class="form-control" type="checkbox"></th>
+                                            <th class="text-right">ID</th>
+                                            <th class="text-left">Serial Number</th>
+                                            <th class="text-left">Model</th>
+                                            <th class="text-right">Battery Level</th>
+                                            <th class="text-left">Status</th>
+                                            <th class="text-right">Weight</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let drone of drones | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                                            <td class="text-center"><input class="form-control" type="checkbox"></td>
+                                            <td class="text-right">{{drone?.droneID}}</td>
+                                            <td class="text-left">{{drone?.serialNumber}}</td>
+                                            <td class="text-left">{{drone?.model.description}}</td>
+                                            <td class="text-right">{{drone?.batteryCapacity}}</td>
+                                            <td class="text-left"> {{drone?.stateDescription}} </td>
+                                            <th class="text-right">{{drone?.weight}}</th>
+                                            <td class="row-actions">
+                                              <div class="dropdown">
+                                                  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Action
+                                                  </button>
+                                                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                    <li><a class="dropdown-item" href="#" data-title="Edit details" title="Edit details" data-toggle="tooltip" (click) ="onEditDrone(drone)" data-original-title>  Edit</a></li>
+                                                    <li><a class="dropdown-item" href="#" data-title="View Details" title="View Details" data-toggle="tooltip" (click) ="onViewDrone(drone)" data-original-title>  View</a></li>
+                                                    <li><a class="dropdown-item danger" href="#" data-title="Delete Details" title="Delete Details" data-toggle="tooltip" (click) ="onDeleteDrone(drone)" data-original-title> Delete</a></li>
+                                                    <li><a class="dropdown-item" *ngIf="drone?.state === 0 || drone?.state === 1" href="#" data-title="Load Medication" title="Load Medication" data-toggle="tooltip" (click) ="onLoad(drone?.droneID)" data-original-title>  Load</a></li>
+                                                    <li><a class="dropdown-item" *ngIf="drone?.state !== 0 && drone?.state !== 1" href="#" data-title="View Medications" title="View Medications" data-target="#medicationModal" data-toggle="modal" (click) ="viewMedications(drone?.droneID)" data-original-title>  Medications</a></li>
+
+                                                  </ul>
+                                              </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+  
+                                </table>
+                                <div style="text-align: right;" *ngIf="drones?.length > 1">
+                                   <ngb-pagination class="d-flex justify-content-end"
+                                      [(page)]="page" [pageSize]="pageSize" [rotate]="true" [boundaryLinks]="true" [collectionSize]="drones?.length">
+                                   </ngb-pagination>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      <!--------------------END - Table with actions------------------ -->
+                      <!--------------------START - Controls below table------------------  -->
+                      <!--------------------END - Drone File Table-------------------->
+
+                       <!--------------------START - Resource Modal Popup below table------------------  -->
+                       <div aria-hidden="true" class="onboarding-modal modal fade animated" id="medicationModal" role="dialog" tabindex="-1">
+                        <div class="modal-dialog modal-centered" role="document">
+                            <div class="modal-content text-center"><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span class="close-label">Close </span><span class="os-icon os-icon-close"></span></button>
+                                <div class="onboarding-media"><img alt="" src="img/bigicon2.png" width="200px"></div>
+                                <div><h5 style="color:#a7ac2e">MEDICATIONS</h5></div>
+                                <div class="onboarding-content with-gradient">
+                                    <div class="table-responsive">
+                                            <table class="table table-bordered table-lg table-v2 table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center"><input class="form-control" type="checkbox"></th>
+                                                        <th class="text-left">Image</th>
+                                                        <th class="text-left">Name</th>
+                                                        <th class="text-left">Code</th>
+                                                        <th class="text-right">Weight</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let med of medications">
+                                                        <td class="text-center"><input class="form-control" type="checkbox"></td>
+                                                        <td class="text-center"><img [src]="med?.image" width="30px" style="border-radius:50%; border: 1px #ccc ridge;"></td>
+                                                        <td class="text-left">{{med.name}}</td>
+                                                        <td class="text-left">{{med.code}}</td>
+                                                        <td class="text-right">{{med.weight}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    <!--------------------END - Resource Modal Popup table-------------------->
+
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  

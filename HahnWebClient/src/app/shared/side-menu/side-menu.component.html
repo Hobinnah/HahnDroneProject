@@ -1,0 +1,103 @@
+<div class="logo-w">
+  <a class="logo" href="http://www.nse.com.ng">
+      <img src="../../../assets/img/logo.png" style="height:35px; width:80%">
+      <!-- <div class="logo-label">Clean Admin</div> -->
+  </a>
+</div>
+<div class="logged-user-w avatar-inline">
+  <div class="logged-user-i">
+      <div class="avatar-w"><img alt="" src="../assets/img/avatar1.jpg"></div>
+      <div class="logged-user-info-w">
+          <div class="logged-user-name">{{username}}</div>
+          <div class="logged-user-role">{{role}}</div>
+      </div>
+      <div class="logged-user-toggler-arrow">
+          <div class="os-icon os-icon-chevron-down"></div>
+      </div>
+      <div class="logged-user-menu color-style-bright">
+          <div class="logged-user-avatar-info">
+              <div class="avatar-w">
+                  <img alt="" src="../assets/img/avatar1.jpg">
+              </div>
+              <div class="logged-user-info-w">
+                  <div class="logged-user-name">{{username}}</div>
+                  <div class="logged-user-role">{{role}}</div>
+              </div>
+          </div>
+          <div class="bg-icon">
+              <i class="os-icon os-icon-wallet-loaded"></i>
+          </div>
+          <ul>
+              <li>
+                 <a href="#"><i class="os-icon os-icon-cancel-circle" (click)="lockApp()"></i><span>Lock App</span></a>
+              </li>
+              <li>
+                  <a href="#"><i class="os-icon os-icon-signs-11" (click)="logout()"></i><span>Logout</span></a>
+              </li>
+          </ul>
+      </div>
+  </div>
+</div>
+
+<h1 class="menu-page-header">Page Header</h1>
+<ul class="main-menu">
+  <li class="sub-header"><span>Layouts</span></li>
+  <li class="sub-menu"><a routerLink="/pages/dashboard">
+          <div class="icon-w">
+              <div class="os-icon os-icon-home"></div>
+          </div><span>Home</span>
+      </a>
+  </li>
+  <li class="sub-menu"><a routerLink="/admin/test">
+        <div class="icon-w">
+            <div class="os-icon os-icon-layout"></div>
+        </div><span>Dashboard</span>
+    </a>
+  </li>
+
+  <li class="sub-header"><span>Enrolment</span></li>
+  <li class="sub-menu"><a routerLink="/pages/dashboard">
+          <div class="icon-w">
+              <div class="os-icon os-icon-home"></div>
+          </div><span>Parents</span>
+      </a>
+  </li>
+  <li class=" has-sub-menu"><a href="#">
+    <div class="icon-w">
+        <div class="os-icon os-icon-package"></div>
+    </div><span>Students</span>
+</a>
+<div class="sub-menu-w">
+    <div class="sub-menu-header">Students</div>
+    <div class="sub-menu-icon"><i class="os-icon os-icon-package"></i></div>
+    <div class="sub-menu-i">
+        <ul class="sub-menu">
+            <li><a href="#">Students</a></li>
+            <li><a href="#">Student's Clubs</a></li>
+            <li><a href="#">Student's Hostel</a></li>
+            <li><a href="#">Student's Medical</a></li>
+        </ul>
+    </div>
+</div>
+</li>
+  <li class=" has-sub-menu"><a href="#">
+        <div class="icon-w">
+            <div class="os-icon os-icon-package"></div>
+        </div><span>Teachers</span>
+    </a>
+    <div class="sub-menu-w">
+        <div class="sub-menu-header">Teachers</div>
+        <div class="sub-menu-icon"><i class="os-icon os-icon-package"></i></div>
+        <div class="sub-menu-i">
+            <ul class="sub-menu">
+                <li><a href="#">Teachers</a></li>
+                <li><a href="#">Teacher's Clubs</a></li>
+                <li><a href="#">Teacher's Classes</a></li>
+                <li><a href="#">Teacher's Courses</a></li>
+            </ul>
+        </div>
+    </div>
+  </li>
+
+
+</ul>

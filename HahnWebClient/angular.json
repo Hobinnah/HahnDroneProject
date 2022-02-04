@@ -1,0 +1,167 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "HahnWebClient": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/HahnWebClient",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/assets/bower_components/select2/dist/css/select2.min.css",
+              "src/assets/bower_components/bootstrap-daterangepicker/daterangepicker.css",
+              "src/assets/bower_components/dropzone/dist/dropzone.css",
+              "src/assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css",
+              "src/assets/bower_components/fullcalendar/dist/fullcalendar.min.css",
+              "src/assets/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css",
+              "src/assets/bower_components/slick-carousel/slick/slick.css",
+              "src/assets/css/maince5a.css",
+              "src/styles.css"
+            ],
+            "scripts": [
+              "src/assets/bower_components/jquery/dist/jquery.min.js",
+              "src/assets/bower_components/popper.js/dist/umd/popper.min.js",
+              "src/assets/bower_components/moment/moment.js",
+              "src/assets/bower_components/chart.js/dist/Chart.min.js",
+              "src/assets/bower_components/select2/dist/js/select2.full.min.js",
+              "src/assets/bower_components/jquery-bar-rating/dist/jquery.barrating.min.js",
+              "src/assets/bower_components/ckeditor/ckeditor.js",
+              "src/assets/bower_components/bootstrap-validator/dist/validator.min.js",
+              "src/assets/bower_components/bootstrap-daterangepicker/daterangepicker.js",
+              "src/assets/bower_components/ion.rangeSlider/js/ion.rangeSlider.min.js",
+              "src/assets/bower_components/dropzone/dist/dropzone.js",
+              "src/assets/bower_components/editable-table/mindmup-editabletable.js",
+              "src/assets/bower_components/datatables.net/js/jquery.dataTables.min.js",
+              "src/assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js",
+              "src/assets/bower_components/fullcalendar/dist/fullcalendar.min.js",
+              "src/assets/bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js",
+              "src/assets/bower_components/tether/dist/js/tether.min.js",
+              "src/assets/bower_components/slick-carousel/slick/slick.min.js",
+              "src/assets/bower_components/bootstrap/js/dist/util.js",
+              "src/assets/bower_components/bootstrap/js/dist/alert.js",
+              "src/assets/bower_components/bootstrap/js/dist/button.js",
+              "src/assets/bower_components/bootstrap/js/dist/carousel.js",
+              "src/assets/bower_components/bootstrap/js/dist/collapse.js",
+              "src/assets/bower_components/bootstrap/js/dist/dropdown.js",
+              "src/assets/bower_components/bootstrap/js/dist/modal.js",
+              "src/assets/bower_components/bootstrap/js/dist/tab.js",
+              "src/assets/bower_components/bootstrap/js/dist/tooltip.js",
+              "src/assets/bower_components/bootstrap/js/dist/popover.js",
+              "src/assets/js/demo_customizerce5a.js",
+              "src/assets/js/maince5a.js",
+              "src/assets/js/bootstrap.bundle.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "HahnWebClient:build",
+            "proxyConfig": "src/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "HahnWebClient:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "HahnWebClient:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": [
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "HahnWebClient:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "HahnWebClient:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "HahnWebClient"
+}

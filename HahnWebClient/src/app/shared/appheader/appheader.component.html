@@ -1,0 +1,62 @@
+
+
+<div class="top-bar color-scheme-transparent">
+  <div class="" style="padding-left: 10px; color:#a7ac2e; font-weight: 900px; text-transform: uppercase; font-size: 20px;">
+      <div class="logo-label" style="font-size:25px;"><b>Drones</b></div>
+  </div>
+  <!--------------------START - Top Menu Controls-------------------->
+  <div class="top-menu-controls">
+      <div class="element-search autosuggest-search-activator">
+        <input #myInput placeholder="Search ..." type="text" (input)="globalPolicySearch(myInput.value)">
+      </div>
+      <!--------------------START - Messages Link in secondary top menu-------------------->
+      <!--<div class="messages-notifications os-dropdown-trigger os-dropdown-position-left">
+        <i class="os-icon os-icon-mail-14" data-toggle="tooltip" title="Number of Policies and SOPs Awaiting Approval."></i>
+          <div class="new-messages-count">{{totalUnApprovedDoc}}</div>
+      </div>-->
+      <!--------------------END - Messages Link in secondary top menu-------------------->
+      <!--------------------START - Settings Link in secondary top menu-------------------->
+      <div class="top-icon top-settings os-dropdown-trigger os-dropdown-position-left">
+        <i class="os-icon os-icon-ui-46"></i>
+          <div class="os-dropdown" *ngIf="administrator">
+              <div class="icon-w"><i class="os-icon os-icon-ui-46"></i></div>
+              <ul>
+                  <li><a [routerLink]= "['drones']">
+                    <i class="os-icon os-icon-ui-49"></i>
+                    <span>Drone Settings</span></a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+      <!--------------------END - Settings Link in secondary top menu-------------------->
+      <!--------------------START - User avatar and menu in secondary top menu-------------------->
+      <div class="logged-user-w">
+          <div class="logged-user-i">
+              <div class="avatar-w"><img alt="" src="../assets/img/avatar1.jpg"></div>
+              <div class="logged-user-menu color-style-bright">
+                  <div class="logged-user-avatar-info">
+                      <div class="avatar-w"><img alt="" src="../assets/img/avatar1.jpg"></div>
+                      <div class="logged-user-info-w">
+                          <div class="logged-user-name">{{username}}</div>
+                          <div class="logged-user-role">{{role}}</div>
+                      </div>
+                  </div>
+                  <div class="bg-icon"><i class="os-icon os-icon-wallet-loaded"></i></div>
+                  <ul>
+                      <!-- <li><a href="apps_email.html">
+                          <i class="os-icon os-icon-mail-01"></i><span>Incoming Mail</span></a>
+                      </li> -->
+                      <li><a href="users_profile_big.html"  (click)="logout()">
+                          <i class="os-icon os-icon-cancel-circle"></i><span>Lock App</span></a>
+                      </li>
+                      <li><a href="#" (click)="logout()">
+                          <i class="os-icon os-icon-signs-11"></i><span>Logout</span></a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+      <!--------------------END - User avatar and menu in secondary top menu-------------------->
+  </div>
+  <!--------------------END - Top Menu Controls-------------------->
+</div>
