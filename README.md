@@ -1,4 +1,4 @@
-# HahnDroneAPI
+# HahnDroneAPP
 
 HahnDroneAPI is a .net core 3.1 platform independent web api application that is used in
 1. registering a drome
@@ -15,35 +15,56 @@ Use the command below to build the application from the project's root folder.
 ## Run
 
 1. Using Docker
-   use the command below to run the application from the root folder.
+   use the command below to run the application from the API's root folder.
    
    ``` docker-compose up -d```
 
-   as soon as the command completes, go to the url below
+   as soon as the command completes, go to the url below to see the API's swagger
    
    ```http://localhost:8080/swagger/index.html```
 
-2. Using Visual Studio
-   a. start your visual studio application
-   b. from visual studio, navigate to the application's root folder, find and select the file "HahnDroneAPI.sln"
-   c. after visual studio loads the project, click on the run button or press F5 to run the application
-   d. the app will load showing you a swagger page by default.
+   and the below url to browse the client application
+
+   ```http://localhost:4200```
+
+2. Visual Studio
+   i. Using Visual Studio (API)
+      a. start your visual studio application
+      b. from visual studio, navigate to the API's root folder, find and select the file "HahnDroneAPI.sln"
+      c. after visual studio loads the project, click on the run button or press F5 to run the application
+      d. the app will load showing you a swagger page by default.
+
+   ii. Using Visual Studio Code (Typescript)
+      a. start your visual studio code application
+      b. from visual studio code, navigate to the client application's folder, and select it ("HahnWebClient")
+      c. after visual studio code loads the project, open a TERMINAL and type "ng serve --open" and click enter.
+      d. after the command finishes, it will load the application on your browser.
 
 3. Command Prompt
-   a. Open your command prompt application
-   b. Navigate to the project's root folder ~\HahnDroneSolution\HahnDroneAPI
-   c. type "dotnet run" and click enter
-   d. this will startup the application on port 5000 if available (localhost:{5000})
-   e. to see the swagger page enter localhost:{5000}/swagger on your brower address tab
+   i. API
+      a. Open your command prompt application
+      b. Navigate to the project's root folder ~\HahnDroneSolution\HahnDroneAPI
+      c. type "dotnet run" and click enter
+      d. this will startup the application on port 5000 if available (localhost:{5000})
+      e. to see the swagger page enter localhost:{5000}/swagger on your brower address tab
+
+   ii. Client
+      a. Ensure the API is running
+      b. In the client application, find the file with name "proxy.conf.json", replace the value of the "target" key with the running API url
+      c. Open the api.service.ts file under the services folder and uncomment the first this.basrUrl and comment the second one both inside the constructor.
+      d. Open your command prompt application 
+      e. Navigate to the project's root folder ~\HahnDroneSolution\HahnWebClient
+      f. type "ng serve --open" and click enter
+      g. this will startup the application on port 4200 if available, on your browser (localhost:{4200})
 
 
 ## Running the Unit Test
-To run the unit test, 
+To run the API unit test, 
 1. open the project with visual studio as decribed above
 2. in solution explorer, select the test project (HahnDroneAPI.Test).
 3. click the menu **Test** and then the sub-menu **Run All Tests**.
 
-There are currently about twenty-one (25) test cases.
+There are currently about Eighteen (18) test cases.
 
 ## Audit Event Log
 This was implemented using hangfire. To see the log run 
