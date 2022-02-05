@@ -91,6 +91,7 @@ namespace HahnDroneAPI.Services.Implementations
         {
 
             Drone newDrone = _mapper.Map<Drone>(drone);
+            newDrone.Model = null;
 
             if (_droneRepository.Count() > _config.DroneCount())
             {

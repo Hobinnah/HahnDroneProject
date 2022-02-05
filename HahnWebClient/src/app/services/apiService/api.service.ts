@@ -42,7 +42,7 @@ export class ApiService {
   get<T>(apiUrl, httpHeader: HttpHeaders): Observable<T> {
     const url = `${this.baseUrl}${apiUrl}`;
     return this.http.get<T>(url, { headers: httpHeader, withCredentials: true }).pipe(
-                     tap(e => console.log('All' + JSON.stringify(e))),
+                     tap(e => e),
                      catchError(this.handleError)
     );
   }
@@ -51,7 +51,7 @@ export class ApiService {
 
     console.log(apiUrl);
     return this.http.get<T[]>(`${this.baseUrl}${apiUrl}`, { headers: httpHeader }).pipe(
-            tap(e => console.log('All' + JSON.stringify(e))),
+            tap(e => e), //console.log('All' + JSON.stringify(e))
             catchError(this.handleError)
       );
   }
@@ -60,7 +60,7 @@ export class ApiService {
       const url = `${this.baseUrl}${apiUrl}`;
       console.log(url);
       return this.http.post<T>(url, data, { headers: httpHeader, withCredentials: true  }).pipe(
-                       tap(e => console.log('All' + JSON.stringify(e))),
+                       tap(e => e),
                        catchError(this.handleError)
       );
   }
@@ -68,7 +68,7 @@ export class ApiService {
   update<T>(apiUrl, httpHeader: HttpHeaders, data): Observable<T> {
       const url = `${this.baseUrl}${apiUrl}`;
       return this.http.put<T>(url, data, { headers: httpHeader, withCredentials: true  }).pipe(
-                      tap(e => console.log('All' + JSON.stringify(e))),
+                      tap(e => e),
                       catchError(this.handleError)
       );
   }
@@ -76,7 +76,7 @@ export class ApiService {
   delete<T>(apiUrl, httpHeader: HttpHeaders): Observable<T> {
       const url = `${this.baseUrl}${apiUrl}`;
       return this.http.delete<T>(url, { headers: httpHeader, withCredentials: true  }).pipe(
-                       tap(e => console.log('All' + JSON.stringify(e))),
+                       tap(e => e),
                        catchError(this.handleError)
       );
   }

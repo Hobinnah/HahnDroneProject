@@ -19,17 +19,6 @@ namespace HahnDroneAPI.Db.Repositories.Implementations
         public void SeedData(int droneUpperWeightLimit)
         {
 
-            //Seed Drone models
-            if (!_context.DroneModels.Any())
-            {
-                _context.DroneModels.Add(new Model() { Description = "Lightweight" });
-                _context.DroneModels.Add(new Model() { Description = "Middleweight" });
-                _context.DroneModels.Add(new Model() { Description = "Cruiserweight" });
-                _context.DroneModels.Add(new Model() { Description = "Heavyweight" });
-
-                _context.SaveChanges();
-            }
-
             //Seed drones
             if (!_context.Drones.Any())
             {

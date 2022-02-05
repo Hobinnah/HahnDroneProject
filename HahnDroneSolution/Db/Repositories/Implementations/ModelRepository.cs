@@ -12,10 +12,25 @@ namespace HahnDroneAPI.Db.Repositories.Implementations
         
         public ModelRepository(HahnDroneDBContext context) : base(context)
         {
-            
+            SeedData();
         }
 
-        public IQueryable<Model> Models => _context.DroneModels.OrderByDescending(x => x.ModelID).AsQueryable();
+        public IQueryable<Model> Models => _context.Models.OrderByDescending(x => x.ModelID).AsQueryable();
+
+        public void SeedData()
+        {
+
+            //Seed Drone models
+            if (!_context.Models.Any())
+            {
+                    _context.Models.Add(new Model() { Description = "Lightweight" });
+                    _context.Models.Add(new Model() { Description = "Middleweight" });
+                    _context.Models.Add(new Model() { Description = "Cruiserweight" });
+                    _context.Models.Add(new Model() { Description = "Heavyweight" });
+
+                _context.SaveChanges();
+            }
+        }
 
     }
 }

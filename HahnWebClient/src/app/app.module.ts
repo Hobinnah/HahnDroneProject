@@ -21,7 +21,6 @@ import { MobileMenuComponent } from './shared/mobile-menu/mobile-menu.component'
 
 import { StorageService } from './services/storageService/storage.service';
 import { ApiService } from './services/apiService/api.service';
-import { ApplicantService } from './services/applicantService/applicant-service.service';
 import { DroneService } from './services/droneService/drone-service.service';
 import { MessageService } from './services/messageService/message.service';
 import { ExcelService } from './services/excel-service/excel.service';
@@ -63,7 +62,6 @@ import { DroneMapComponent } from './droneMap/drone-map.component';
   providers: [
     StorageService,
     ApiService,
-    ApplicantService,
     MessageService,
     ExcelService,
     DroneService,

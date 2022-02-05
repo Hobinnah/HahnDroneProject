@@ -77,8 +77,9 @@ export class DronesComponent implements OnInit {
     this.medications = [];
 
     this.loader.start();
-    this.getAllDrones();
     this.getAllModels();
+    this.getAllDrones();
+    
     this.getAllDroneStates();
     this.initializeForm();
   }
@@ -172,6 +173,7 @@ getAllDroneStates() {
               this.drone.serialNumber = this.droneForm.value.SerialNumber;
               this.drone.state = parseInt(this.droneForm.value.State, 0);
               this.drone.weight = parseFloat(this.droneForm.value.Weight);
+              this.drone.model = null;
               
               console.log('drone', this.drone);
 

@@ -31,7 +31,7 @@ namespace HahnDroneAPI.Db
         #region ========================================== Database Models ==========================================
         public virtual DbSet<Drone> Drones { get; set; }
         public virtual DbSet<Medication> Medications { get; set; }
-        public virtual DbSet<Model> DroneModels { get; set; }
+        public virtual DbSet<Model> Models { get; set; }
         public virtual DbSet<DroneMedicationMaster> DroneMedicationMaster { get; set; }
         public virtual DbSet<DroneMedicationDetail> DroneMedicationDetails { get; set; }
         public virtual DbSet<AuditEventLog> AuditEventLogs { get; set; }

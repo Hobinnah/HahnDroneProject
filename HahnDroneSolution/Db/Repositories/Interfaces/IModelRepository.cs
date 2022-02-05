@@ -9,5 +9,7 @@ namespace HahnDroneAPI.Db.Repositories.Interfaces
     public interface IModelRepository : IRepository<Model>
     {
         IQueryable<Model> Models { get; }
+
+        void SeedData();
     }
 }

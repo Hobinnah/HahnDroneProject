@@ -5,8 +5,6 @@ using Moq;
 using HahnDroneAPI.Configurations;
 using HahnDroneAPI.Db;
 using HahnDroneAPI.Models;
-using HahnDroneAPI.Models.Enums;
-using HahnDroneAPI.Profiles.Models;
 using HahnDroneAPI.Profiles.Profiles;
 using HahnDroneAPI.Services.Implementations;
 using HahnDroneAPI.Services.Interfaces;

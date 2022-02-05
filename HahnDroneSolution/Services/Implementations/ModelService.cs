@@ -22,14 +22,44 @@ namespace HahnDroneAPI.Services.Implementations
         private readonly HahnDroneDBContext _context;
         private readonly IModelRepository _modelRepository;
 
-        public ModelService(IMapper mapper, IModelRepository medicationRepository)
+        public ModelService(IMapper mapper, IModelRepository modelRepository)
         {
             this._mapper = mapper;
-            this._modelRepository = medicationRepository;
+            this._modelRepository = modelRepository;
 
         }
 
         public async Task<ModelResponse> GetModelsAsync(QueryParameters queryParameters)
+        {
+
+            IEnumerable<Model> models = await this._modelRepository.GetAll();
+
+            var allModels = models;
+
+            if (!string.IsNullOrEmpty(queryParameters.Name))
+            {
+                models = models?.Where(p => p.Description.ToLower().Contains(queryParameters.Name.ToLower()));
+            }
+
+            if (models == null || !models.Any())
+            {
+                throw new MessageException("Model was not found", HttpStatusCode.NotFound);
+            }
+
+            var filteredModels = models.Skip(queryParameters.Size * (queryParameters.Page - 1)).Take(queryParameters.Size);
+
+            var result = _mapper.Map<IEnumerable<Model>, IEnumerable<ModelDto>>(filteredModels.ToList());
+            ModelResponse modelResponse = new ModelResponse();
+
+            modelResponse.Models = result;
+            modelResponse.Count = models.Count();
+
+            return modelResponse;
+
+
+        }
+
+        public async Task<ModelResponse> GetModelsAsync2(QueryParameters queryParameters)
         {
             
             IQueryable<Model> models = this._modelRepository.Models;
@@ -54,12 +84,12 @@ namespace HahnDroneAPI.Services.Implementations
             var filteredModels = models.Skip(queryParameters.Size * (queryParameters.Page - 1)).Take(queryParameters.Size);
 
             var result = _mapper.Map<IEnumerable<Model>, IEnumerable<ModelDto>>(await filteredModels.ToListAsync());
-            ModelResponse medicationResponse = new ModelResponse();
+            ModelResponse modelResponse = new ModelResponse();
 
-            medicationResponse.Models = result;
-            medicationResponse.Count = models.Count();
+            modelResponse.Models = result;
+            modelResponse.Count = models.Count();
 
-            return medicationResponse;
+            return modelResponse;
 
             
         }
