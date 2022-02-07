@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Alert, BreadCrumb, DroneDto, MedicationDto, ModelDto, StateEnum, DroneMedicationRequest } from '../models/models';
-import { MessageService, StorageService, DroneService, DataService } from '../services/services';
+import { Alert, BreadCrumb, DroneDto, MedicationDto, ModelDto, StateEnum, DroneMedicationRequest } from '../../models/models';
+import { MessageService, StorageService, DroneService, DataService } from '../../services/services';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ActivatedRoute } from '@angular/router';

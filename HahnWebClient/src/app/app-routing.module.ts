@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppbodyComponent } from './appbody/appbody.component';
-import { DronesComponent } from './drones/drones.component';
-import { LoadDroneComponent } from './loadDrone/load-drone.component';
-import { DroneMapComponent } from './droneMap/drone-map.component';
+import { DronesComponent } from './pages/drones/drones.component';
+import { LoadDroneComponent } from './pages/loadDrone/load-drone.component';
+import { DroneMapComponent } from './pages/droneMap/drone-map.component';
 
 const routes: Routes = [
 

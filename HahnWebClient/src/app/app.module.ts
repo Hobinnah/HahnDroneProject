@@ -13,7 +13,7 @@ import { AppComponent } from './app.component';
 import { AppbodyComponent } from './appbody/appbody.component';
 import { AppbreadcrumComponent } from './shared/appbreadcrum/appbreadcrum.component';
 import { AppheaderComponent } from './shared/appheader/appheader.component';
-
+import { AlertComponent } from './shared/alert/alert.component';
 
 import { SideMenuComponent } from './shared/side-menu/side-menu.component';
 import { MobileMenuComponent } from './shared/mobile-menu/mobile-menu.component';
@@ -24,12 +24,11 @@ import { ApiService } from './services/apiService/api.service';
 import { DroneService } from './services/droneService/drone-service.service';
 import { MessageService } from './services/messageService/message.service';
 import { ExcelService } from './services/excel-service/excel.service';
-
-import { AlertComponent } from './shared/alert/alert.component';
-import { DronesComponent } from './drones/drones.component';
 import { DataService }from './services/dataService/datah-service.service';
-import { LoadDroneComponent } from './loadDrone/load-drone.component';
-import { DroneMapComponent } from './droneMap/drone-map.component';
+
+import { DronesComponent } from './pages/drones/drones.component';
+import { LoadDroneComponent } from './pages/loadDrone/load-drone.component';
+import { DroneMapComponent } from './pages/droneMap/drone-map.component';
 
 
 @NgModule({

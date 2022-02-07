@@ -41,7 +41,7 @@ Use the command below to build the application from the project's root folder.
 ## Run
 
 #### 1. Using Docker
-   use the command below to run the application from the API's root folder.
+   use the command below to run the application from the API's root folder. (~\HahnDroneSolution\HahnDroneSolution)
    
    ``` docker-compose up -d```
 

@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Alert, BreadCrumb, DroneDto } from '../models/models';
-import { MessageService, StorageService, DroneService } from '../services/services';
+import { Alert, BreadCrumb, DroneDto } from '../../models/models';
+import { MessageService, StorageService, DroneService } from '../../services/services';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({

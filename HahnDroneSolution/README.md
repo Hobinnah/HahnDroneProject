@@ -31,7 +31,7 @@ Use the command below to build the application from the project's root folder.
 
 3. Command Prompt
    a. Open your command prompt application
-   b. Navigate to the project's root folder ~\HahnDroneSolution\HahnDroneAPI
+   b. Navigate to the project's root folder ~\HahnDroneSolution\HahnDroneSolution
    c. type "dotnet run" and click enter
    d. this will startup the application on port 5000 if available (localhost:{5000})
    e. to see the swagger page enter localhost:{5000}/swagger on your brower address tab

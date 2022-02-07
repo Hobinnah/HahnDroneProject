@@ -9,5 +9,3 @@ FROM nginx:alpine
 COPY --from=node /app/dist/HahnWebClient/ /usr/share/nginx/html
 
 EXPOSE 80
-
-#docker build --rm -t hahnWebClient:latest
