@@ -27,7 +27,7 @@ Each **Medication** has:
 
 
 HahnDroneAPI is a .net core 3.1 platform independent web api application that is used in
-1. registering a drome
+1. registering a drone
 2. loading a drone with medication items
 3. checking loaded medication items for a given drone
 4. checking available drones for loading
