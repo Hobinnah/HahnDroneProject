@@ -36,7 +36,7 @@ export class DronesComponent implements OnInit {
   states: any[];
   medications: MedicationDto[];
 
-  pageSize = 10;
+  pageSize = 6;
   page = 1;
 
   droneForm: FormGroup;
@@ -262,10 +262,14 @@ getAllDroneStates() {
       return false;
   }
 
-  onLoad(droneID){
+  onLoad(drone){
 
-
-    this.route.navigateByUrl(`loaddrone/${droneID}`);
+    if (parseInt(drone.batteryCapacity) > 25) {
+        this.route.navigateByUrl(`loaddrone/${drone.droneID}`);
+    } else {
+        this.alert = this.messageService.ShowDangerAlert(`This drone can not be loaded because its battery level which is ${ drone.batteryCapacity } is less or equal to 25`);
+        this.messageService.sendAlertMessage(this.alert);
+    }
     return false;
   }
 

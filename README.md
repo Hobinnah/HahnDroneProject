@@ -1,5 +1,31 @@
 # HahnDroneAPP
 
+### Introduction
+
+This is a major new technology in the field of transportation: **the drone**. The drone has the potential to leapfrog traditional transportation infrastructure.
+
+Useful drone functions include delivery of small items to not easily accessable locations.
+
+---
+
+### App description
+
+We have a fleet of **drones**. A drone is capable of carrying and delivering small loads. For our use case **the loads are medications**.
+
+A **Drone** has:
+- serial number (100 characters max);
+- model (Lightweight, Middleweight, Cruiserweight, Heavyweight);
+- weight limit (500gr max);
+- battery capacity (percentage);
+- state (IDLE, LOADING, LOADED, DELIVERING, DELIVERED, RETURNING).
+
+Each **Medication** has: 
+- name (allowed only letters, numbers, ‘-‘, ‘_’);
+- weight;
+- code (allowed only upper case letters, underscore and numbers);
+- image (picture of the medication case).
+
+
 HahnDroneAPI is a .net core 3.1 platform independent web api application that is used in
 1. registering a drome
 2. loading a drone with medication items
@@ -14,7 +40,7 @@ Use the command below to build the application from the project's root folder.
 
 ## Run
 
-1. Using Docker
+#### 1. Using Docker
    use the command below to run the application from the API's root folder.
    
    ``` docker-compose up -d```
@@ -27,7 +53,7 @@ Use the command below to build the application from the project's root folder.
 
    ```http://localhost:4200```
 
-2. Visual Studio
+#### 2. Visual Studio
    i. Using Visual Studio (API)
       a. start your visual studio application
       b. from visual studio, navigate to the API's root folder, find and select the file "HahnDroneAPI.sln"
@@ -40,7 +66,7 @@ Use the command below to build the application from the project's root folder.
       c. after visual studio code loads the project, open a TERMINAL and type "ng serve --open" and click enter.
       d. after the command finishes, it will load the application on your browser.
 
-3. Command Prompt
+#### 3. Command Prompt
    i. API
       a. Open your command prompt application
       b. Navigate to the project's root folder ~\HahnDroneSolution\HahnDroneAPI

@@ -165,7 +165,7 @@
                                                     <li><a class="dropdown-item" href="#" data-title="Edit details" title="Edit details" data-toggle="tooltip" (click) ="onEditDrone(drone)" data-original-title>  Edit</a></li>
                                                     <li><a class="dropdown-item" href="#" data-title="View Details" title="View Details" data-toggle="tooltip" (click) ="onViewDrone(drone)" data-original-title>  View</a></li>
                                                     <li><a class="dropdown-item danger" href="#" data-title="Delete Details" title="Delete Details" data-toggle="tooltip" (click) ="onDeleteDrone(drone)" data-original-title> Delete</a></li>
-                                                    <li><a class="dropdown-item" *ngIf="drone?.state === 0 || drone?.state === 1" href="#" data-title="Load Medication" title="Load Medication" data-toggle="tooltip" (click) ="onLoad(drone?.droneID)" data-original-title>  Load</a></li>
+                                                    <li><a class="dropdown-item" *ngIf="drone?.state === 0 || drone?.state === 1" href="#" data-title="Load Medication" title="Load Medication" data-toggle="tooltip" (click) ="onLoad(drone)" data-original-title>  Load</a></li>
                                                     <li><a class="dropdown-item" *ngIf="drone?.state !== 0 && drone?.state !== 1" href="#" data-title="View Medications" title="View Medications" data-target="#medicationModal" data-toggle="modal" (click) ="viewMedications(drone?.droneID)" data-original-title>  Medications</a></li>
 
                                                   </ul>

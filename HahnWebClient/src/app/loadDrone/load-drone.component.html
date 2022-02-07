@@ -101,10 +101,10 @@
   
                           <div class="row gutters-8">
                             <div class="col-lg-2 col-12 form-group" style="padding-right: 0px;">
-                              <button type="button" class="fw-btn-fill btn-gradient-yellow"(click)="onMap()">Map</button>
+                              <button type="button" class="fw-btn-fill btn-gradient-yellow"(click)="onExportAsXLSX()">Download</button>
                             </div>
                             <div class="col-lg-2 col-12 form-group">
-                              <button type="button" class="fw-btn-fill btn-gradient-dark"(click)="onExportAsXLSX()">Download</button>
+                                <!-- <button type="button" class="fw-btn-fill btn-gradient-yellow"(click)="onMap()">Map</button> -->
                             </div>
                             <div class="col-lg-5 col-12 form-group" style="padding-right: 0px;">
                               <input #myInput class="form-control form-control-sm rounded bright" placeholder="Search medication" type="text" (input)="filterMedications(myInput.value)">
