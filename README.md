@@ -34,9 +34,20 @@ HahnDroneAPI is a .net core 3.1 platform independent web api application that is
 5. checking drone battery level for a given drone and 
 6. runs a background process which keeps a log of all drones' battery level.
 
+## Clone App
+
+Download or clone the repository to your local machine:
+
+$ git clone https://github.com/Hobinnah/HahnDroneProject.git
+
 ## Build
-Use the command below to build the application from the project's root folder.
-``` dotnet build ```
+Use the command below to build the application from the project's root folder of
+#### 1. WebAPI
+        ``` dotnet build ```
+        
+#### 2. Client
+        a. first run $ npm install
+        b. then run $ ng build
 
 ## Run
 
